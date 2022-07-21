@@ -1,10 +1,15 @@
 import React from 'react'
-import { Button } from 'antd-mobile'
+import { Link, useRoutes } from 'react-router-dom'
+import routes from './routes'
 
 export default function App() {
+  const element = useRoutes(routes)
   return (
     <div>
-      <Button color='primary'>Primary</Button>
+      <Link to='/login'>点我去login</Link>
+      <Link to='/register'>点我去register</Link>
+      <Link to='/main'>点我去main</Link>
+      {element}
     </div>
   )
 }
