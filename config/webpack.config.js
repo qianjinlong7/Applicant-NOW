@@ -547,7 +547,7 @@ module.exports = function (webpackEnv) {
             },
             {
               test: lessRegex,
-              exclude: sassModuleRegex,
+              exclude: lessModuleRegex,
               use: getStyleLoaders(
                 {
                   importLoaders: 3,

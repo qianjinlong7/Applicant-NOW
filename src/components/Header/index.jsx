@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
-// import { NavBar } from 'antd-mobile'
+import { NavBar } from 'antd-mobile'
 import './index.less'
 import logo from './logo.png'
 
 export default function Logo() {
   return (
     <Fragment>
-      {/* <NavBar>硅&nbsp;谷&nbsp;直&nbsp;聘</NavBar> */}
+      <NavBar className='navBar' backArrow=''>硅&nbsp;谷&nbsp;直&nbsp;聘</NavBar>
       <div className='logo-container'>
         <img src={logo} alt="logo" className='logo-img' />
       </div>
