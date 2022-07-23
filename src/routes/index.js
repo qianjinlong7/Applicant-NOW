@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '/',
-    element: <Navigate to='/register' />
+    element: <Navigate to='/login' />
   }
 ]
 

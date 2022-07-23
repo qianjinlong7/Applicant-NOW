@@ -55,7 +55,7 @@ export default function Register() {
         </List>
         <br />
         <Button onClick={register} block color='primary' size='large'>注册</Button>
-        <Button onClick={toLogin} block size='large'>已有账户</Button>
+        <Button onClick={toLogin} block size='large'>已有账户，去登陆</Button>
       </div>
     </div>
   )
