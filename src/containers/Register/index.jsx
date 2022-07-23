@@ -2,6 +2,7 @@
  * 注册组件
  */
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   List,
   Form,
@@ -13,6 +14,7 @@ import Header from '../../components/Header'
 import './index.less'
 
 export default function Register() {
+  const navigate = useNavigate()
   const [userInfo, setuserInfo] = useState({
     username: '',
     password: '',
@@ -25,6 +27,9 @@ export default function Register() {
   }
   const register = () => {
     console.log(userInfo)
+  }
+  const toLogin = () => {
+    navigate('/login')
   }
   return (
     <div>
@@ -50,7 +55,7 @@ export default function Register() {
         </List>
         <br />
         <Button onClick={register} block color='primary' size='large'>注册</Button>
-        <Button block size='large'>已有账户</Button>
+        <Button onClick={toLogin} block size='large'>已有账户</Button>
       </div>
     </div>
   )
