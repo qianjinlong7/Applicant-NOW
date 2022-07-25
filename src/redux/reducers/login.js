@@ -1,9 +1,15 @@
-const initState = 0
-export default function login(preState = initState, action) {
+import { AUTH_SUCCESS } from '../constent'
+
+const initState = {
+  username: '',
+  type: 0,
+  msg: ''
+}
+export default function register(preState = initState, action) {
   const { type, data } = action
   switch (type) {
-    case 1:
-      return preState + data
+    case AUTH_SUCCESS:
+      return data
     default:
       return preState
   }
