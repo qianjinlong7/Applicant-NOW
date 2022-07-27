@@ -1,12 +1,13 @@
 /**
  * 登陆组件
  */
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { asyncLogin } from '../../redux/actions/login'
 import { List, Form, Input, Button } from 'antd-mobile'
 import Header from '../../components/Header'
+import Logo from '../../components/Logo'
 import './index.less'
 
 function Login(props) {
@@ -32,8 +33,9 @@ function Login(props) {
     }
   })
   return (
-    <div>
-      <Header />
+    <Fragment>
+      <Header title='硅 谷 直 聘' />
+      <Logo />
       <List className='loginList'>
         <Form layout='horizontal' footer={
           <Button onClick={login} block type='submit' color='primary' size='large'>
@@ -49,7 +51,7 @@ function Login(props) {
         </Form>
         <Button onClick={toRegister} block size='large'>没有账户，去注册</Button>
       </List>
-    </div>
+    </Fragment>
   )
 }
 

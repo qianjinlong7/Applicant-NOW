@@ -1,12 +1,13 @@
 /**
  * 注册组件
  */
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { asyncRegister } from '../../redux/actions/register'
 import { List, Form, Input, Radio, Button, Toast } from 'antd-mobile'
 import Header from '../../components/Header'
+import Logo from '../../components/Logo'
 import './index.less'
 
 function Register(props) {
@@ -39,8 +40,9 @@ function Register(props) {
     }
   })
   return (
-    <div>
-      <Header />
+    <Fragment>
+      <Header title='硅 谷 直 聘' />
+      <Logo />
       <List className='registerList'>
         <Form layout='horizontal'
           footer={
@@ -65,7 +67,7 @@ function Register(props) {
         </Form>
         <Button onClick={toLogin} block size='large'>已有账户，去登陆</Button>
       </List>
-    </div>
+    </Fragment>
   )
 }
 

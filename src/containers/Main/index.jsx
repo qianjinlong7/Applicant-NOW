@@ -1,10 +1,13 @@
 /**
  * 主界面组件
  */
-import React from 'react'
+import React, { Fragment } from 'react'
+import { Outlet } from 'react-router-dom'
 
 export default function Main() {
   return (
-    <div>Main</div>
+    <Fragment>
+      <Outlet />
+    </Fragment>
   )
 }
