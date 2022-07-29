@@ -8,3 +8,6 @@ export const reqRegister = user => ajax('/register', user, 'POST')
 
 // 登录接口 
 export const reqLogin = user => ajax('/login', user, 'POST')
+
+// 用户信息完善接口
+export const reqInfo = user => ajax('/update', user, 'POST')

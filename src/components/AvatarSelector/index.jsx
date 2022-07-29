@@ -25,11 +25,12 @@ const demoAvatarImages = [
   'https://images.unsplash.com/photo-1546967191-fdfb13ed6b1e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
 ]
 export default function AvatarSelector(props) {
+  const { saveAvatarURL, avatar } = props
   const handleAvatar = avatarURL => {
-    props.saveAvatarURL(avatarURL)
+    saveAvatarURL(avatarURL)
   }
   return (
-    <List header='请选择头像'>
+    <List header={avatar ? (<div>已选择头像 <img className='avatar' src={avatar} alt='avatar'/></div>) : '请选择头像'}>
       <Grid columns={5} gap={8} className='avatarWrap'>
         {
           demoAvatarImages.map((item, i) => {

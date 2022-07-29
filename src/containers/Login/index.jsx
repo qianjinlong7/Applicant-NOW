@@ -5,6 +5,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { asyncLogin } from '../../redux/actions/login'
+import { clearRedirectTo } from '../../redux/actions'
 import { List, Form, Input, Button } from 'antd-mobile'
 import Header from '../../components/Header'
 import Logo from '../../components/Logo'
@@ -16,20 +17,24 @@ function Login(props) {
     username: '',
     password: '',
   })
-  const { login_register, asyncLogin } = props
+  const { login_register, asyncLogin, clearRedirectTo } = props
   const handleInfo = (type, value) => {
     setuserInfo({ ...userInfo, [type]: value })
   }
+  // 登录，向后端发送保存在state中的用户对象
   const login = () => {
     asyncLogin(userInfo)
   }
+  // 点击去注册
   const toRegister = () => {
     navigate('/register')
   }
+  // 用于重定向，当登录成功后，根据用户类型和是否完善过信息，跳转到对应的页面
   const { redirectTo } = login_register
   useEffect(() => {
     if (redirectTo) {
       navigate(redirectTo)
+      clearRedirectTo()
     }
   })
   return (
@@ -57,5 +62,5 @@ function Login(props) {
 
 export default connect(
   state => ({ login_register: state.login_register }),
-  { asyncLogin }
+  { asyncLogin, clearRedirectTo }
 )(Login)
