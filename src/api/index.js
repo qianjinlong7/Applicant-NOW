@@ -10,4 +10,7 @@ export const reqRegister = user => ajax('/register', user, 'POST')
 export const reqLogin = user => ajax('/login', user, 'POST')
 
 // 用户信息完善接口
-export const reqInfo = user => ajax('/update', user, 'POST')
+export const reqSaveInfo = user => ajax('/update', user, 'POST')
+
+// 获取用户信息接口
+export const reqGetInfo = () => ajax('/user')

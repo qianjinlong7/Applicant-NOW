@@ -1,4 +1,4 @@
-import { SAVE_SUCCESS, SAVE_FAIL, CLEAR_REDIRECTTO } from '../constent'
+import { RECEIVE_USER, RESET_USER, CLEAR_REDIRECTTO } from '../constent'
 import { getNavigate } from '../../utils'
 
 const initState = {
@@ -12,16 +12,16 @@ const initState = {
 export default function main(preState = initState, action) {
   const { type, data } = action
   switch (type) {
-    case SAVE_SUCCESS:
+    case RECEIVE_USER:  // 用户信息保存成功
       const { userType, post } = data
       return { ...data, redirectTo: getNavigate(userType, post) }
-    case SAVE_FAIL:
+    case RESET_USER:     // 用户信息保存失败
       if (data === '请先登录')
         return { ...preState, msg: data, redirectTo: '/login' }
       else
         return { ...preState, msg: data, redirectTo: '/register' }
-    case CLEAR_REDIRECTTO:
-      return initState
+    case CLEAR_REDIRECTTO:  // 清除路由跳转信息
+      return { ...preState, redirectTo: '' }
     default:
       return preState
   }

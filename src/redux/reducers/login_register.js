@@ -16,7 +16,7 @@ export default function login_register(preState = initState, action) {
     case ERROR_MSG:
       return { ...preState, msg: data }
     case CLEAR_REDIRECTTO:
-      return initState
+      return { ...preState, redirectTo: '' }
     default:
       return preState
   }
