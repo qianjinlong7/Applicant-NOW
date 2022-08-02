@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import Login from '../containers/Login'
 import Register from '../containers/Register'
+import RouterCentral from '../containers/RouterCentral'
 import Main from '../containers/Main'
 import RecruiterInfo from '../containers/Main/RecruiterInfo'
 import ApplicantInfo from '../containers/Main/ApplicantInfo'
@@ -17,6 +18,10 @@ const routes = [
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path: '/central',
+    element: <RouterCentral />
   },
   {
     path: '/main',
@@ -50,7 +55,7 @@ const routes = [
   },
   {
     path: '/',
-    element: <Navigate to='/main' />
+    element: <Navigate to='/central' />
   }
 ]
 

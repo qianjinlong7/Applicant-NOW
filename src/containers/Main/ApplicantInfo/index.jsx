@@ -2,12 +2,12 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { asyncSaveInfo } from '../../../redux/actions/main'
-import { clearRedirectTo } from '../../../redux/actions'
 import { Form, Button, Input, TextArea } from 'antd-mobile'
 import Header from '../../../components/Header'
 import AvatarSelector from '../../../components/AvatarSelector'
 
 function ApplicantInfo(props) {
+  const navigate = useNavigate()
   const [applicantInfo, setApplicantInfo] = useState({
     avatar: '',   // 头像
     post: '',     // 求职岗位
@@ -21,17 +21,19 @@ function ApplicantInfo(props) {
   const saveAvatarURL = avatarURL => {
     handleApplicantInfo('avatar', avatarURL)
   }
-  const { main, asyncSaveInfo, clearRedirectTo } = props
+  const { user, asyncSaveInfo } = props
   // 点击保存按钮，向后端发送填好的信息
   const saveApplicantInfo = () => {
     asyncSaveInfo(applicantInfo)
   }
-  const { redirectTo } = main
-  const navigate = useNavigate()
+  /**
+   * 用于重定向
+   * 页面挂载后，根据redux中是否存在【用户的职位信息】来判断【信息是否已完善】
+   * 若已完善则跳转到路由中枢进一步判断应该跳转到哪个页面
+   */
   useEffect(() => {
-    if (redirectTo) {
-      navigate(redirectTo)
-      clearRedirectTo()
+    if (user.post) {
+      navigate('/central')
     }
   })
   return (
@@ -55,6 +57,6 @@ function ApplicantInfo(props) {
 }
 
 export default connect(
-  state => ({ main: state.main }),
-  { asyncSaveInfo, clearRedirectTo }
+  state => ({ user: state.user }),
+  { asyncSaveInfo }
 )(ApplicantInfo)

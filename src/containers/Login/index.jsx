@@ -5,7 +5,6 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { asyncLogin } from '../../redux/actions/login'
-import { clearRedirectTo } from '../../redux/actions'
 import { List, Form, Input, Button } from 'antd-mobile'
 import Header from '../../components/Header'
 import Logo from '../../components/Logo'
@@ -17,7 +16,7 @@ function Login(props) {
     username: '',
     password: '',
   })
-  const { login_register, asyncLogin, clearRedirectTo } = props
+  const { user, asyncLogin } = props
   const handleInfo = (type, value) => {
     setuserInfo({ ...userInfo, [type]: value })
   }
@@ -29,12 +28,14 @@ function Login(props) {
   const toRegister = () => {
     navigate('/register')
   }
-  // 用于重定向，当登录成功后，根据用户类型和是否完善过信息，跳转到对应的页面
-  const { redirectTo } = login_register
+  /**
+   * 用于重定向
+   * 页面挂载后，根据redux中是否存在【用户名】来判断【是否已登录】
+   * 若已登录则跳转到路由中枢进一步判断应该跳转到哪个页面
+   */
   useEffect(() => {
-    if (redirectTo) {
-      navigate(redirectTo)
-      clearRedirectTo()
+    if (user.username) {
+      navigate('/central')
     }
   })
   return (
@@ -61,6 +62,6 @@ function Login(props) {
 }
 
 export default connect(
-  state => ({ login_register: state.login_register }),
-  { asyncLogin, clearRedirectTo }
+  state => ({ user: state.user }),
+  { asyncLogin }
 )(Login)

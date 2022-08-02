@@ -5,7 +5,6 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { asyncRegister } from '../../redux/actions/register'
-import { clearRedirectTo } from '../../redux/actions'
 import { List, Form, Input, Radio, Button, Toast } from 'antd-mobile'
 import Header from '../../components/Header'
 import Logo from '../../components/Logo'
@@ -19,7 +18,7 @@ function Register(props) {
     confirmPWD: '',
     userType: 0
   })
-  const { login_register, asyncRegister, clearRedirectTo } = props
+  const { user, asyncRegister } = props
   const { username, password, confirmPWD, userType } = userInfo
   // 收集输入的表单数据，保存到组件自身的state中
   const handleInfo = (type, value) => {
@@ -37,12 +36,14 @@ function Register(props) {
   const toLogin = () => {
     navigate('/login')
   }
-  // 每次组件重新渲染时，检查是否需要重定向
-  const { redirectTo } = login_register
+  /**
+   * 用于重定向
+   * 页面挂载后，根据redux中是否存在【用户名】来判断【是否已注册】
+   * 若已注册则跳转到路由中枢进一步判断应该跳转到哪个页面
+   */
   useEffect(() => {
-    if (redirectTo) {
-      navigate(redirectTo)
-      clearRedirectTo()
+    if (user.username) {
+      navigate('/central')
     }
   })
   return (
@@ -78,6 +79,6 @@ function Register(props) {
 }
 
 export default connect(
-  state => ({ login_register: state.login_register }),
-  { asyncRegister, clearRedirectTo }
+  state => ({ user: state.user }),
+  { asyncRegister }
 )(Register)
