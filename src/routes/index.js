@@ -7,7 +7,7 @@ import RecruiterInfo from '../containers/Main/RecruiterInfo'
 import ApplicantInfo from '../containers/Main/ApplicantInfo'
 import Recruiter from '../containers/Main/Recruiter'
 import Applicant from '../containers/Main/Applicant'
-import List from '../containers/Main/List'
+import Message from '../containers/Main/Message'
 import Personal from '../containers/Main/Personal'
 
 const routes = [
@@ -24,17 +24,17 @@ const routes = [
     element: <RouterCentral />
   },
   {
+    path: 'recruiterinfo',
+    element: <RecruiterInfo />
+  },
+  {
+    path: 'applicantinfo',
+    element: <ApplicantInfo />
+  },
+  {
     path: '/main',
     element: <Main />,
     children: [
-      {
-        path: 'recruiterinfo',
-        element: <RecruiterInfo />
-      },
-      {
-        path: 'applicantInfo',
-        element: <ApplicantInfo />
-      },
       {
         path: 'recruiter',
         element: <Recruiter />
@@ -44,8 +44,8 @@ const routes = [
         element: <Applicant />
       },
       {
-        path: 'list',
-        element: <List />
+        path: 'message',
+        element: <Message />
       },
       {
         path: 'personal',

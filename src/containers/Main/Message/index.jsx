@@ -2,10 +2,10 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Header from '../../../components/Header'
 
-function Personal() {
+function Message() {
   return (
     <Fragment>
-      <Header title='个人中心' />
+      <Header title='消息列表' />
     </Fragment>
   )
 }
@@ -13,4 +13,4 @@ function Personal() {
 export default connect(
   state => ({}),
   {}
-)(Personal)
+)(Message)

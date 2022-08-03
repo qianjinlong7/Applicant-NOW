@@ -2,12 +2,9 @@
 export const getNavigate = (userType, post) => {
   let path
   if (userType === 0) {
-    path = '/main/applicant'
+    path = !post ? '/applicantinfo' : '/main/applicant'
   } else {
-    path = '/main/recruiter'
-  }
-  if (!post) {
-    path += 'Info'
+    path = !post ? '/recruiterinfo' : '/main/recruiter'
   }
   return path
 }

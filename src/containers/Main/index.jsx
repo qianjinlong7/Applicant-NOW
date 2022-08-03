@@ -5,19 +5,21 @@ import React, { Fragment, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Cookies from 'js-cookie'
+import Footer from '../../components/Footer'
 
 function Main(props) {
   const userid = Cookies.get('userid')  // 获取指定的cookie
   const navigate = useNavigate()
   // 当cookie中没有用户信息时，则跳转到路由中枢进行控制
   useEffect(() => {
-    if(!userid || !props.user._id) {
+    if (!userid || !props.user._id) {
       navigate('/central')
     }
   })
   return (
     <Fragment>
       <Outlet />
+      <Footer userType={props.user.userType} />
     </Fragment>
   )
 }
