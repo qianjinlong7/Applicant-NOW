@@ -14,3 +14,6 @@ export const reqSaveInfo = user => ajax('/update', user, 'POST')
 
 // 获取用户信息接口
 export const reqGetInfo = () => ajax('/user')
+
+// 获取指定类型用户的数据
+export const reqGetUsers = userType => ajax('/userlist', { userType })

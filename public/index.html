@@ -20,12 +20,19 @@
     :root:root {
       --adm-color-primary: #4EAA95;
     }
+
+    .clearfix::before,
+    .clearfix::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
   </style>
 </head>
 
 <body>
   <noscript>您的浏览器版本过低，请升级浏览器版本或换用其他浏览器</noscript>
-  <div id="root"></div>
+  <div id="root" class="clearfix"></div>
 </body>
 
 </html>

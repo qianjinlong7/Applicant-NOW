@@ -30,7 +30,7 @@ export default function AvatarSelector(props) {
     saveAvatarURL(avatarURL)
   }
   return (
-    <List header={avatar ? (<div>已选择头像 <img className='avatar' src={avatar} alt='avatar'/></div>) : '请选择头像'}>
+    <List className='avatarSelector' header={avatar ? (<div>已选择头像 <img className='avatar' src={avatar} alt='avatar'/></div>) : '请选择头像'}>
       <Grid columns={5} gap={8} className='avatarWrap'>
         {
           demoAvatarImages.map((item, i) => {

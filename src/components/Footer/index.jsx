@@ -10,12 +10,12 @@ import {
 import './index.less'
 
 export default function Footer(props) {
+  const { userType } = props
   const tabs = [
     {
-      key: props.userType === 0 ? '/main/applicant' : '/main/recruiter',
-      title: '我的待办',
+      key: userType === 0 ? '/main/applicant' : '/main/recruiter',
+      title: userType === 0 ? '职位' : '人员',
       icon: <UnorderedListOutline />,
-      badge: '5'
     },
     {
       key: '/main/message',
@@ -32,11 +32,9 @@ export default function Footer(props) {
   const navigate = useNavigate()
   const location = useLocation()
   const { pathname } = location
-  const setRouteActive = (value) => {
-    navigate(value)
-  }
+  const setRouteActive = value => navigate(value) // 根据点击图标进行路由跳转
   return (
-    <TabBar activeKey={pathname} onChange={value => setRouteActive(value)}>
+    <TabBar activeKey={pathname} onChange={value => setRouteActive(value)} className='footer'>
       {tabs.map(item => (<TabBar.Item key={item.key} icon={item.icon} title={item.title} badge={item.badge} />))}
     </TabBar>
   )

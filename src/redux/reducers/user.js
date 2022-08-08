@@ -1,4 +1,4 @@
-import { AUTH_SUCCESS, ERROR_MSG, RESET_USER } from '../constent'
+import { AUTH_SUCCESS, ERROR_MSG, RESET_USER, RECEIVE_USERS } from '../constent'
 
 const initState = {
   username: '', // 用户名
@@ -9,6 +9,7 @@ const initState = {
   post: '',   // 职位
   salary: '', // 月薪
   company: '', // 公司名
+  users: [],  // 用户列表
 }
 export default function user(preState = initState, action) {
   const { type, data } = action
@@ -19,6 +20,8 @@ export default function user(preState = initState, action) {
       return { ...preState, msg: data }
     case RESET_USER:     // 用户信息保存失败
       return { ...initState, msg: data }
+    case RECEIVE_USERS:
+      return { ...preState, users: data }
     default:
       return preState
   }
