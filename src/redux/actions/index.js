@@ -2,7 +2,9 @@ import {
   AUTH_SUCCESS,
   ERROR_MSG,
   RESET_USER,
-  RECEIVE_USERS
+  RECEIVE_USERS,
+  RECEIVE_MSGS,
+  RECEIVE_MSG,
 } from '../constent'
 
 // 授权成功——登录、注册、获取用户 成功
@@ -13,3 +15,8 @@ export const errorMsg = msg => ({ type: ERROR_MSG, data: msg })
 export const resetUser = msg => ({ type: RESET_USER, data: msg })
 // 接收对应类型用户数组
 export const receiveUsers = users => ({ type: RECEIVE_USERS, data: users })
+
+// 接收用户消息列表
+export const receiveMsgs = chatData => ({ type: RECEIVE_MSGS, data: chatData })
+// 接收新消息
+export const receiveMsg = chatData => ({ type: RECEIVE_MSG, data: chatData })

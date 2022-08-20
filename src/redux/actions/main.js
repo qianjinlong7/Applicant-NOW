@@ -17,6 +17,7 @@ export const asyncSaveInfo = user => {
     }
   }
 }
+
 // 获取用户信息的异步action
 export const asyncGetInfo = () => {
   return async dispatch => {

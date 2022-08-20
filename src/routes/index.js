@@ -9,6 +9,7 @@ import Recruiter from '../containers/Main/Recruiter'
 import Applicant from '../containers/Main/Applicant'
 import Message from '../containers/Main/Message'
 import Personal from '../containers/Main/Personal'
+import Chat from '../containers/Chat'
 
 const routes = [
   {
@@ -50,8 +51,12 @@ const routes = [
       {
         path: 'personal',
         element: <Personal />
-      }
+      },
     ]
+  },
+  {
+    path: 'chat/:userid',
+    element: <Chat />
   },
   {
     path: '/',

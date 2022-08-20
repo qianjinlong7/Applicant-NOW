@@ -17,3 +17,9 @@ export const reqGetInfo = () => ajax('/user')
 
 // 获取指定类型用户的数据
 export const reqGetUsers = userType => ajax('/userlist', { userType })
+
+// 获取当前用户的消息列表
+export const reqGetMsgs = () => ajax('/msglist')
+
+// 修改消息为已读
+export const reqReadMsg = from => ajax('/readmsg', { from }, 'POST')
