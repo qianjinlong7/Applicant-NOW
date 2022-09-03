@@ -25,11 +25,11 @@ const routes = [
     element: <RouterCentral />
   },
   {
-    path: 'recruiterinfo',
+    path: '/recruiterinfo',
     element: <RecruiterInfo />
   },
   {
-    path: 'applicantinfo',
+    path: '/applicantinfo',
     element: <ApplicantInfo />
   },
   {
@@ -55,7 +55,7 @@ const routes = [
     ]
   },
   {
-    path: 'chat/:userid',
+    path: '/chat/:userid',
     element: <Chat />
   },
   {

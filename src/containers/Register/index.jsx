@@ -42,6 +42,7 @@ function Register(props) {
    * 若已注册则跳转到路由中枢进一步判断应该跳转到哪个页面
    */
   useEffect(() => {
+    console.log('Register')
     if (user.username) {
       navigate('/central')
     }

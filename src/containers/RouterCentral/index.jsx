@@ -17,7 +17,7 @@ function RouterCentral(props) {
     if (userid) {   // 登陆过且cookie未超时
       if (user._id) {  // redux已保存了后端返回的数据，不必再发请求查询了
         asyncGetUsers(user.userType)  // 获取对应用户列表到reducer-user中
-        asyncGetMsgs()  // 获取当前用户消息列表到reducer-chat中
+        asyncGetMsgs(user._id)  // 获取当前用户消息列表到reducer-chat中
         // 通过工具函数获取路由路径进行跳转
         navigate(getNavigate(user.userType, user.post))
       } else {  // 需要向后端发送请求获得用户数据

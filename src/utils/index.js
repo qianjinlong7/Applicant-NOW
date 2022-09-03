@@ -21,9 +21,9 @@ export const initIO = (userid, dispatch) => {
     io.socket.on('receiveMsg', function (data) {
       console.log('浏览器端收到消息：', data)
       const { from, to } = data
+      console.log(userid)
       if (userid === from || userid === to) {
         dispatch(receiveMsg(data))
-        console.log('我执行')
       }
     })
   }
