@@ -25,30 +25,35 @@ function Chat(props) {
     '😀', '😂', '😉', '😇', '😃', '😜', '🤭', '☹️',
     '😀', '😂', '😉', '😇', '😃', '😜', '🤭', '☹️',]
   useEffect(() => {
-    if (!_id) {
+    if (!_id) {   // 没有当前用户id时，获取当前用户信息
       asyncGetInfo()
-    } else {
+    } else {      // 存在当前用户id但对应用户列表不存在时，根据当前用户id获取消息列表
       if (!users) {
         asyncGetMsgs(_id)
       }
     }
+    window.scrollTo(0, document.body.scrollHeight)  // 设置默认消息列表在最下一行
   })
   const saveMsg = val => {  // 受控组件，实时保存input框输入的内容
     setMsg(val)
   }
   const sendMsg = () => { // 发送消息
-    if (msg !== '') {
+    if (msg !== '') {   // 当输入框不为空时，实现发送消息功能
       asyncSendMsg(_id, { from: _id, to: targetId, content: msg })
-      setMsg('')
+      setMsg('')  // 清空输入框
+      setIsShow(false)  // 收起emoji列表
     }
   }
-  const showEmoji = () => { // 显示emoji列表
+  const showEmoji = () => { // 展开/收起 emoji 列表
     setIsShow(!isShow)
+  }
+  const onFocus = () => { // 当输入框获取到焦点后，收起emoji列表
+    setIsShow(false)
   }
   return (
     <Fragment>
       <Header title={title} chat={true} />
-      <List style={{ "marginTop": "45px", "marginBottom": "49px" }}>
+      <List style={{ "marginTop": "45px", "marginBottom": isShow ? "199px" : "49px" }}>
         {
           chatMsgs.map(item => {
             if (item.from === _id && item.to === targetId) {
@@ -90,11 +95,11 @@ function Chat(props) {
             </span>
           }
         >
-          <Input onChange={val => saveMsg(val)} value={msg} />
+          <Input onChange={val => saveMsg(val)} value={msg} onFocus={onFocus} />
         </Form.Item>
         {
           isShow ? (
-            <Grid columns={3} gap={8} style={{ height: '150px', overflow: 'scroll' }}>
+            <Grid columns={5} gap={8} style={{ height: '150px', overflow: 'scroll' }}>
               {
                 emojis.map((item, index) => {
                   return (
