@@ -15,7 +15,7 @@ export default function List(props) {
         users.map(item => {
           return (
             <div key={item._id} onClick={() => navigate(`/chat/${item._id}`, { state: { title: item.username, targetId: item._id } })}>
-              <Card title={<Avatar className='avatar' src={item.avatar} />} extra={item.username}>
+              <Card title={<div className='cardTitle'><Avatar className='cardAvatar' src={item.avatar} /> <span className='cardText'>{item.username}</span></div>}>
                 {
                   item.userType === 0 ?
                     <Fragment>
