@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { asyncGetInfo } from '../../redux/actions/main'
 import { asyncSendMsg, asyncGetMsgs } from '../../redux/actions/chat'
-import { List, Image, Form, Input, Grid } from 'antd-mobile'
+import { List, Image, Form, TextArea, Grid } from 'antd-mobile'
 import Header from '../../components/Header'
 import './index.less'
 
@@ -58,14 +58,15 @@ function Chat(props) {
           chatMsgs.map(item => {
             if (item.from === _id && item.to === targetId) {
               return (
-                <List.Item key={item._id} className='myMsg'
+                <List.Item key={item._id}
                   extra={
                     <Image src={avatar} style={{ borderRadius: 20 }}
                       fit='cover' width={30} height={30}
                     />
                   }
                 >
-                  {item.content}
+                  {/* 为文本套上一层容器，使容器靠右，文本正常靠左 */}
+                  <span className='myMsg'>{item.content}</span>
                 </List.Item>
               )
             } else if (item.from === targetId && item.to === _id) {
@@ -95,7 +96,8 @@ function Chat(props) {
             </span>
           }
         >
-          <Input onChange={val => saveMsg(val)} value={msg} onFocus={onFocus} />
+          {/* <Input onChange={val => saveMsg(val)} value={msg} onFocus={onFocus} /> */}
+          <TextArea onChange={val => saveMsg(val)} value={msg} onFocus={onFocus} rows={1} autoSize />
         </Form.Item>
         {
           isShow ? (
