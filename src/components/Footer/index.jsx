@@ -10,7 +10,7 @@ import {
 import './index.less'
 
 export default function Footer(props) {
-  const { userType } = props
+  const { userType, unReadCount } = props
   const tabs = [
     {
       key: userType === 0 ? '/main/applicant' : '/main/recruiter',
@@ -21,7 +21,7 @@ export default function Footer(props) {
       key: '/main/message',
       title: '消息',
       icon: (active) => active ? <MessageFill /> : <MessageOutline />,
-      badge: '99+'
+      badge: `${unReadCount ? unReadCount : ''}`
     },
     {
       key: '/main/personal',

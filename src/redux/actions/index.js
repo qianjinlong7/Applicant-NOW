@@ -5,6 +5,7 @@ import {
   RECEIVE_USERS,
   RECEIVE_MSGS,
   RECEIVE_MSG,
+  READ_MSG
 } from '../constent'
 
 // 授权成功——登录、注册、获取用户 成功
@@ -17,6 +18,8 @@ export const resetUser = msg => ({ type: RESET_USER, data: msg })
 export const receiveUsers = users => ({ type: RECEIVE_USERS, data: users })
 
 // 接收用户消息列表
-export const receiveMsgs = chatData => ({ type: RECEIVE_MSGS, data: chatData })
+export const receiveMsgs = (chatData, userid) => ({ type: RECEIVE_MSGS, data: { chatData, userid } })
 // 接收新消息
-export const receiveMsg = chatData => ({ type: RECEIVE_MSG, data: chatData })
+export const receiveMsg = (chatData, userid) => ({ type: RECEIVE_MSG, data: { chatData, userid } })
+// 修改指定用户消息为已读
+export const readMsg = nModified => ({ type: READ_MSG, data: nModified })

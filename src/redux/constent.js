@@ -4,3 +4,4 @@ export const RESET_USER = 'reset_user'      // 重置用户信息
 export const RECEIVE_USERS = 'receive_users'  // 接收对应类型用户数组
 export const RECEIVE_MSGS = 'receive_msgs'  // 接收对应类型用户数组
 export const RECEIVE_MSG = 'receive_msg'    // 接收对应类型用户数组
+export const READ_MSG = 'read_msg'  // 修改指定用户对当前用户的消息为已读

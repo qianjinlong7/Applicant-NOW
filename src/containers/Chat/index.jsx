@@ -5,7 +5,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { asyncGetInfo } from '../../redux/actions/main'
-import { asyncSendMsg, asyncGetMsgs } from '../../redux/actions/chat'
+import { asyncSendMsg, asyncGetMsgs, asyncReadMsgs } from '../../redux/actions/chat'
 import { List, Image, Form, TextArea, Grid } from 'antd-mobile'
 import Header from '../../components/Header'
 import './index.less'
@@ -14,7 +14,7 @@ function Chat(props) {
   const [msg, setMsg] = useState('')
   const [isShow, setIsShow] = useState(false)
   const { state: { title, targetId } } = useLocation()
-  const { user: { _id, avatar }, chat: { users, chatMsgs }, asyncGetInfo, asyncSendMsg, asyncGetMsgs } = props
+  const { user: { _id, avatar }, chat: { users, chatMsgs }, asyncGetInfo, asyncSendMsg, asyncGetMsgs, asyncReadMsgs } = props
   const emojis = ['😀', '😂', '😉', '😇', '😃', '😜', '🤭', '☹️',
     '😀', '😂', '😉', '😇', '😃', '😜', '🤭', '☹️',
     '😀', '😂', '😉', '😇', '😃', '😜', '🤭', '☹️',
@@ -34,6 +34,11 @@ function Chat(props) {
     }
     window.scrollTo(0, document.body.scrollHeight)  // 设置默认消息列表在最下一行
   })
+  useEffect(() => {
+    return (()=>{
+      asyncReadMsgs(targetId)
+    })
+  }, [])  // eslint-disable-line react-hooks/exhaustive-deps
   const saveMsg = val => {  // 受控组件，实时保存input框输入的内容
     setMsg(val)
   }
@@ -96,7 +101,6 @@ function Chat(props) {
             </span>
           }
         >
-          {/* <Input onChange={val => saveMsg(val)} value={msg} onFocus={onFocus} /> */}
           <TextArea onChange={val => saveMsg(val)} value={msg} onFocus={onFocus} rows={1} autoSize />
         </Form.Item>
         {
@@ -124,5 +128,5 @@ export default connect(
     user: state.user,
     chat: state.chat
   }),
-  { asyncGetInfo, asyncSendMsg, asyncGetMsgs }
+  { asyncGetInfo, asyncSendMsg, asyncGetMsgs, asyncReadMsgs }
 )(Chat)

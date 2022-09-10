@@ -19,11 +19,9 @@ export const initIO = (userid, dispatch) => {
     io.socket = io('ws://localhost:3000')
     // 绑定'receiveMessage'的监听，来接收服务器发送的消息
     io.socket.on('receiveMsg', function (data) {
-      console.log('浏览器端收到消息：', data)
       const { from, to } = data
-      console.log(userid)
       if (userid === from || userid === to) {
-        dispatch(receiveMsg(data))
+        dispatch(receiveMsg(data, userid))
       }
     })
   }

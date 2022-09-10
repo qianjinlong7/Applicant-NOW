@@ -11,7 +11,7 @@ import Footer from '../../components/Footer'
 function Main(props) {
   const userid = Cookies.get('userid')  // 获取指定的cookie
   const navigate = useNavigate()
-  const { user: { _id, userType, users }, asyncGetUsers } = props
+  const { user: { _id, userType, users }, chat: { unReadCount }, asyncGetUsers } = props
   // 当cookie中没有用户信息时，则跳转到路由中枢进行控制
   useEffect(() => {
     if (!userid || !_id) {
@@ -24,12 +24,15 @@ function Main(props) {
   return (
     <Fragment>
       <Outlet />
-      <Footer userType={props.user.userType} />
+      <Footer userType={userType} unReadCount={unReadCount} />
     </Fragment>
   )
 }
 
 export default connect(
-  state => ({ user: state.user }),
+  state => ({
+    user: state.user,
+    chat: state.chat
+  }),
   { asyncGetUsers }
 )(Main)
